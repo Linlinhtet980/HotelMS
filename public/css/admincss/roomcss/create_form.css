@@ -1,0 +1,149 @@
+/* Room Create/Edit Form Specific Styles */
+
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.form-label span {
+    color: #EF4444; /* Required asterisk */
+    margin-left: 0.25rem;
+}
+
+.form-control, .form-select {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background-color: rgba(11, 15, 25, 0.5);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.form-control:focus, .form-select:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+    background-color: var(--bg-dark);
+}
+
+.form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239CA3AF'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    padding-right: 2.5rem;
+}
+
+.form-select option {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+}
+
+.radio-group {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+.radio-input {
+    appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    margin: 0;
+    transition: var(--transition);
+    position: relative;
+    cursor: pointer;
+}
+
+.radio-input:checked {
+    border-color: var(--accent-gold);
+}
+
+.radio-input:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0.6rem;
+    height: 0.6rem;
+    background-color: var(--accent-gold);
+    border-radius: 50%;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.input-icon-wrapper {
+    position: relative;
+}
+
+.input-icon-wrapper i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+.input-icon-wrapper .form-control {
+    padding-left: 2.5rem;
+}
+
+/* Validation Errors */
+.error-message {
+    color: #EF4444;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}
+
+.has-error .form-control, .has-error .form-select {
+    border-color: #EF4444;
+}
+
+.has-error .form-control:focus, .has-error .form-select:focus {
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}

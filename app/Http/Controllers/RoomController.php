@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\{rooms, room_details};
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class RoomController extends Controller
 {
@@ -13,7 +14,7 @@ class RoomController extends Controller
     public function index()
     {
         $rooms = rooms::with('detail') -> get();
-        return view('rooms.index', compact('rooms'));
+        return view('adminview.rooms.index', compact('rooms'));
     }
 
     /**
@@ -21,7 +22,7 @@ class RoomController extends Controller
      */
     public function create()
     {
-        //
+        return view('adminview.rooms.create');
     }
 
     /**
@@ -29,7 +30,31 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'Room_Number' => 'required',
+            'price' => 'required|numeric',
+            'bed_type' => 'required',
+            'has_wifi' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('rooms', 'public');
+        }
+
+        $room = rooms::create([
+            'Room_Number' => $request->Room_Number,
+            'price' => $request->price,
+            'image' => $imagePath
+        ]);
+        
+        $room->detail()->create([
+            'bed_type' => $request->bed_type,
+            'has_wifi' => $request->has_wifi
+        ]);
+
+        return redirect()->route('rooms.index')->with('success', 'Room created successfully.');
     }
 
     /**
@@ -37,7 +62,8 @@ class RoomController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $room = rooms::with('detail')->findOrFail($id);
+        return view('adminview.rooms.show', compact('room'));
     }
 
     /**
@@ -45,7 +71,8 @@ class RoomController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $room = rooms::with('detail')->findOrFail($id);
+        return view('adminview.rooms.edit', compact('room'));
     }
 
     /**
@@ -53,7 +80,38 @@ class RoomController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'Room_Number' => 'required',
+            'price' => 'required|numeric',
+            'bed_type' => 'required',
+            'has_wifi' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        $room = rooms::findOrFail($id);
+        
+        $data = $request->only('Room_Number', 'price');
+        
+        if ($request->hasFile('image')) {
+            // Delete old image if it exists
+            if ($room->image && Storage::disk('public')->exists($room->image)) {
+                Storage::disk('public')->delete($room->image);
+            }
+            // Store new image
+            $data['image'] = $request->file('image')->store('rooms', 'public');
+        }
+
+        $room->update($data);
+
+        $room->detail()->updateOrCreate(
+            ['room_id' => $id],
+            [
+                'bed_type' => $request->bed_type,
+                'has_wifi' => $request->has_wifi
+            ]
+        );
+
+        return redirect()->route('rooms.index')->with('success', 'Room updated successfully.');
     }
 
     /**
@@ -61,6 +119,9 @@ class RoomController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $room = rooms::findOrFail($id);
+        $room->delete();
+        
+        return redirect()->route('rooms.index')->with('success', 'Room deleted successfully.');
     }
 }

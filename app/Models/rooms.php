@@ -8,7 +8,8 @@ class rooms extends Model
 {
        protected $fillable = [
         'Room_Number',
-        'price'
+        'price',
+        'image'
     ];
     public function detail(){return $this->hasOne(room_details::class,'room_id');}
 }
