@@ -81,7 +81,7 @@
                     </button>
 
                     <div class="profile-menu">
-                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=D4AF37&color=0B0F19" alt="Admin Profile" class="profile-img">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=0EA5E9&color=FFFFFF" alt="Admin Profile" class="profile-img">
                         <div class="profile-info">
                             <h4>Admin User</h4>
                             <p>General Manager</p>

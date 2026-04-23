@@ -37,7 +37,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($rooms ?? [] as $room)
+@php /** @var \Illuminate\Database\Eloquent\Collection|\App\Models\rooms[] $rooms */ @endphp
+
+                    @forelse($rooms as $room)
                     <tr>
                         <td>
                             <div class="room-number">
