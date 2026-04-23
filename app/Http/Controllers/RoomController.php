@@ -31,11 +31,11 @@ class RoomController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'Room_Number' => 'required',
-            'price' => 'required|numeric',
-            'bed_type' => 'required',
-            'has_wifi' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'Room_Number'   => 'required',
+            'price'         => 'required|numeric',
+            'bed_type'      => 'required',
+            'has_wifi'      => 'required',
+            'image'         => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         $imagePath = null;
@@ -45,8 +45,8 @@ class RoomController extends Controller
 
         $room = rooms::create([
             'Room_Number' => $request->Room_Number,
-            'price' => $request->price,
-            'image' => $imagePath
+            'price'       => $request->price,
+            'image'       => $imagePath
         ]);
         
         $room->detail()->create([
@@ -82,10 +82,10 @@ class RoomController extends Controller
     {
         $request->validate([
             'Room_Number' => 'required',
-            'price' => 'required|numeric',
-            'bed_type' => 'required',
-            'has_wifi' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'price'       => 'required|numeric',
+            'bed_type'    => 'required',
+            'has_wifi'    => 'required',
+            'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         $room = rooms::findOrFail($id);
@@ -104,10 +104,10 @@ class RoomController extends Controller
         $room->update($data);
 
         $room->detail()->updateOrCreate(
-            ['room_id' => $id],
+            ['room_id'      => $id],
             [
-                'bed_type' => $request->bed_type,
-                'has_wifi' => $request->has_wifi
+                'bed_type'  => $request->bed_type,
+                'has_wifi'  => $request->has_wifi
             ]
         );
 
