@@ -38,7 +38,14 @@ class RoomController extends Controller
             'image'         => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        $imagePath = null;
+        // if ($request -> hasFile('image')){
+        //     $file = $request ->file('image');
+        //     $filename = time() . '.' . $file -> getClientOriginalExtension();
+        //     $file->move(public_path('storage/rooms'), $filename);
+        //     $date['image'] = $filename;
+        // }
+
+        $imagePath = null;                                                                      
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('rooms', 'public');
         }
