@@ -60,25 +60,25 @@ class RoomController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(rooms $room)
     {
-        $room = rooms::with('detail')->findOrFail($id);
+        $room->load('detail');
         return view('adminview.rooms.show', compact('room'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(rooms $rooms)
+    public function edit(rooms $room)
     {
-        $rooms -> load('detail');
+        $room->load('detail');
         return view('adminview.rooms.edit', compact('room'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, rooms $room)
     {
         $request->validate([
             'Room_Number' => 'required',
@@ -88,8 +88,6 @@ class RoomController extends Controller
             'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        $room = rooms::findOrFail($id);
-        
         $data = $request->only('Room_Number', 'price');
         
         if ($request->hasFile('image')) {
@@ -104,7 +102,7 @@ class RoomController extends Controller
         $room->update($data);
 
         $room->detail()->updateOrCreate(
-            ['room_id'      => $id],
+            [   'room_id'   => $room->id ],
             [
                 'bed_type'  => $request->bed_type,
                 'has_wifi'  => $request->has_wifi
