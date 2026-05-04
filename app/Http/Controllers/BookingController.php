@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
-use App\Models\rooms;
+use App\Models\Room;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -23,7 +23,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        $rooms = rooms::all();
+        $rooms = Room::all();
         return view('adminview.booking.create', compact('rooms'));
     }
 
@@ -43,7 +43,7 @@ class BookingController extends Controller
         ]);
 
         $nights = Carbon::parse($request->check_in_date)->diffInDays($request->check_out_date) ?: 1;
-        $room = rooms::findOrFail($request->room_id, ['*']);
+        $room = Room::findOrFail($request->room_id, ['*']);
         $request->merge(['total_price' => $nights * $room->price]);
 
         Booking::create($request->all());
@@ -69,7 +69,7 @@ class BookingController extends Controller
      */
     public function edit(Booking $booking)
     {
-        $rooms = rooms::all();
+        $rooms = Room::all();
         return view('adminview.booking.edit', compact('booking', 'rooms'));
     }
 
@@ -88,7 +88,7 @@ class BookingController extends Controller
         ]);
 
         $nights = Carbon::parse($request->check_in_date)->diffInDays($request->check_out_date) ?: 1;
-        $room = rooms::findOrFail($request->room_id, ['*']);
+        $room = Room::findOrFail($request->room_id, ['*']);
         $request->merge(['total_price' => $nights * $room->price]);
 
         $booking->update($request->all());

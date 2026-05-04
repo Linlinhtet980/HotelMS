@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class room_details extends Model
+class RoomDetail extends Model
 {
+    protected $table = 'room_details';
+
     protected $fillable = [
         'room_id',
         'bed_type',
@@ -14,6 +16,6 @@ class room_details extends Model
 
     public function room()
     {
-        return $this->belongsTo(rooms::class, 'room_id');
+        return $this->belongsTo(Room::class, 'room_id');
     }
 }

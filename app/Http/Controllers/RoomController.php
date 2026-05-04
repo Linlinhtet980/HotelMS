@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{rooms, room_details};
+use App\Models\{Room, RoomDetail};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,7 +13,7 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $rooms = rooms::with('detail') -> get();
+        $rooms = Room::with('detail') -> get();
         return view('adminview.rooms.index', compact('rooms'));
     }
 
@@ -50,7 +50,7 @@ class RoomController extends Controller
             $imagePath = $request->file('image')->store('rooms', 'public');
         }
 
-        $room = rooms::create([
+        $room = Room::create([
             'Room_Number' => $request->Room_Number,
             'price'       => $request->price,
             'image'       => $imagePath
@@ -67,7 +67,7 @@ class RoomController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(rooms $room)
+    public function show(Room $room)
     {
         $room->load('detail');
         return view('adminview.rooms.show', compact('room'));
@@ -76,7 +76,7 @@ class RoomController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(rooms $room)
+    public function edit(Room $room)
     {
         $room->load('detail');
         return view('adminview.rooms.edit', compact('room'));
@@ -85,7 +85,7 @@ class RoomController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, rooms $room)
+    public function update(Request $request, Room $room)
     {
         $request->validate([
             'Room_Number' => 'required',
@@ -122,9 +122,9 @@ class RoomController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(rooms $room)
+    public function destroy(Room $room)
     {
-        rooms::destroy($room->id);
+        Room::destroy($room->id);
         return redirect()->route('rooms.index')->with('success', 'Room deleted successfully.');
     }
 }
