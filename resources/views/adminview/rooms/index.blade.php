@@ -77,7 +77,7 @@
                                 <form action="{{ route('rooms.destroy', $room->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn-icon delete-btn" title="Delete Room" onclick="return confirm('Are you sure you want to delete this room?')">
+                                    <button type="submit" class="btn-icon delete-btn" title="Delete Room">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>
@@ -101,3 +101,7 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('js/rooms/room_actions.js') }}"></script>
+@endpush

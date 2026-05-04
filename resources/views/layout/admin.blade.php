@@ -36,10 +36,11 @@
                     <span>Rooms Management</span>
                 </a>
                 
-                <a href="#" class="nav-item">
+                <a href="{{ route('bookings.index') ?? '#' }}" class="nav-item {{ request()->routeIs('bookings.*') ? 'active' : '' }}">
                     <i class="fa-solid fa-calendar-check"></i>
                     <span>Bookings</span>
                 </a>
+
 
                 <a href="#" class="nav-item">
                     <i class="fa-solid fa-users"></i>
@@ -106,23 +107,7 @@
     </div>
 
     @stack('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const sidebarToggle = document.getElementById('sidebarToggle');
-            const body = document.body;
-
-            // Load state from localStorage if exists
-            if (localStorage.getItem('sidebar-collapsed') === 'true') {
-                body.classList.add('sidebar-collapsed');
-            }
-
-            sidebarToggle.addEventListener('click', function() {
-                body.classList.toggle('sidebar-collapsed');
-                
-                // Save state so it remembers between page loads
-                localStorage.setItem('sidebar-collapsed', body.classList.contains('sidebar-collapsed'));
-            });
-        });
-    </script>
+    <!-- Layout Specific Scripts -->
+    <script src="{{ asset('js/layout/admin_sidebar.js') }}"></script>
 </body>
 </html>

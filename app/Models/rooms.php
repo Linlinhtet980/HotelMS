@@ -12,4 +12,6 @@ class rooms extends Model
         'image'
     ];
     public function detail(){return $this->hasOne(room_details::class,'room_id');}
+    public function bookings(){return $this->hasMany(Booking::class,'room_id');}
+
 }

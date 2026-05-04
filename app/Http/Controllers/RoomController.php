@@ -124,7 +124,7 @@ class RoomController extends Controller
      */
     public function destroy(rooms $room)
     {
-        $room->delete();
+        rooms::destroy($room->id);
         return redirect()->route('rooms.index')->with('success', 'Room deleted successfully.');
     }
 }

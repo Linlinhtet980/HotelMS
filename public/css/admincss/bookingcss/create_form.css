@@ -1,0 +1,150 @@
+/* Booking Create/Edit Form Specific Styles */
+
+.form-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.form-label span {
+    color: #EF4444; /* Required asterisk */
+    margin-left: 0.25rem;
+}
+
+.form-control, .form-select {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background-color: rgba(11, 15, 25, 0.5);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.form-control:focus, .form-select:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+    background-color: var(--bg-dark);
+}
+
+.form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239CA3AF'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    padding-right: 2.5rem;
+}
+
+.form-select option {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+}
+
+.input-icon-wrapper {
+    position: relative;
+}
+
+.input-icon-wrapper i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+.input-icon-wrapper .form-control {
+    padding-left: 2.5rem;
+}
+
+/* Summary Card */
+.summary-card {
+    background: rgba(212, 175, 55, 0.05);
+    border: 1px dashed var(--accent-gold);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.summary-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.summary-item .label {
+    color: var(--text-secondary);
+}
+
+.summary-item .value {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.total-row {
+    border-top: 1px solid var(--border-color);
+    margin-top: 1rem;
+    padding-top: 1rem;
+    font-size: 1.25rem;
+}
+
+.total-row .value {
+    color: var(--accent-gold-light);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Validation Errors */
+.error-message {
+    color: #EF4444;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}
+
+.has-error .form-control, .has-error .form-select {
+    border-color: #EF4444;
+}
