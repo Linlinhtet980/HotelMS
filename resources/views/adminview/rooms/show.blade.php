@@ -54,6 +54,25 @@
                 </div>
 
 
+                <!-- Amenities -->
+                <div class="detail-item full-width" style="margin-top: 1rem;">
+                    <div class="detail-icon" style="background-color: rgba(124, 58, 237, 0.1); color: var(--accent-gold);">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <div class="detail-info">
+                        <span class="detail-label">Available Amenities</span>
+                        <div class="amenities-list-show" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+                            @forelse($room->amenities as $amenity)
+                                <span class="amenity-item" style="background: #111; border: 1px solid #222; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; color: #EEE; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fa-solid fa-check" style="color: var(--accent-gold); font-size: 0.7rem;"></i>
+                                    {{ $amenity->name }}
+                                </span>
+                            @empty
+                                <span class="text-secondary" style="font-size: 0.9rem;">No specific amenities listed for this room.</span>
+                            @endforelse
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Example of an extra field just to make it look full and nice -->
                 <div class="detail-item">

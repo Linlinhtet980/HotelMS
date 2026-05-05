@@ -72,7 +72,7 @@ class RoomController extends Controller
      */
     public function show(Room $room)
     {
-        $room->load('detail');
+        $room->load(['detail', 'amenities']);
         return view('adminview.rooms.show', compact('room'));
     }
 
