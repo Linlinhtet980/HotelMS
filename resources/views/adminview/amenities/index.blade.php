@@ -39,7 +39,7 @@
                         <th>Amenity Name</th>
                         <th>Attached Rooms</th>
                         <th>Created At</th>
-                        <th class="text-right">Actions</th>
+                        <th class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,13 +60,17 @@
                             </span>
                         </td>
                         <td>{{ $amenity->created_at->format('M d, Y') }}</td>
-                        <td>
+                        <td class="text-center">
                             <div class="action-links">
-                                <a href="{{ route('Amenities.edit', $amenity->id) }}" class="action-link edit-link">Edit</a>
+                                <a href="{{ route('Amenities.edit', $amenity->id) }}" class="action-btn edit-btn" title="Edit">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
                                 <form action="{{ route('Amenities.destroy', $amenity->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="action-link delete-link" style="background:none; border:none; padding:0; cursor:pointer;" onclick="return confirm('Are you sure?')">Delete</button>
+                                    <button type="submit" class="action-btn delete-btn" style="background:none; border:none; padding:0; cursor:pointer;" onclick="return confirm('Are you sure?')">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
                                 </form>
                             </div>
                         </td>

@@ -32,8 +32,8 @@
                 </div>
 
                 <div class="form-actions">
-                    <a href="{{ route('Amenities.index') }}" class="btn btn-outline">Cancel</a>
-                    <button type="submit" class="btn btn-primary">
+                    <a href="{{ route('Amenities.index') }}" class="btn-secondary">Cancel</a>
+                    <button type="submit" class="btn-primary">
                         <i class="fa-solid fa-check"></i> Update Changes
                     </button>
                 </div>

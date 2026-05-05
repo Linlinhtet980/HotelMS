@@ -10,9 +10,9 @@
 @section('content')
 <div class="form-container">
     <div class="actions-header" style="justify-content: flex-start; margin-bottom: 1.5rem;">
-        <a href="{{ route('rooms.index') ?? '#' }}" class="btn btn-outline" style="padding: 0.5rem 1rem;">
-            <i class="fa-solid fa-arrow-left"></i> Back to Rooms
-        </a>
+    <a href="{{ route('rooms.index') ?? '#' }}" class="btn-secondary">
+        <i class="fa-solid fa-arrow-left"></i> Back to Rooms
+    </a>
     </div>
 
     <div class="card">
@@ -108,10 +108,10 @@
                 </div>
 
                 <div class="form-actions">
-                    <a href="{{ route('rooms.index') ?? '#' }}" class="btn btn-outline" style="border-color: var(--text-secondary); color: var(--text-secondary);">
+                    <a href="{{ route('rooms.index') ?? '#' }}" class="btn-secondary">
                         Cancel
                     </a>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn-primary">
                         <i class="fa-solid fa-floppy-disk"></i> Update Room
                     </button>
                 </div>

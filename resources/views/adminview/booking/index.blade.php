@@ -13,7 +13,7 @@
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" class="search-input" placeholder="Search by customer or room...">
     </div>
-    <a href="{{ route('bookings.create') }}" class="btn btn-primary">
+    <a href="{{ route('bookings.create') }}" class="btn-primary">
         <i class="fa-solid fa-plus"></i> New Booking
     </a>
 </div>
@@ -34,7 +34,7 @@
                         <th>Dates</th>
                         <th>Total Price</th>
                         <th>Status</th>
-                        <th>Actions</th>
+                        <th class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -68,18 +68,18 @@
                                 {{ ucfirst($booking->status) }}
                             </span>
                         </td>
-                        <td>
+                        <td class="text-center">
                             <div class="action-links">
-                                <a href="{{ route('bookings.show', $booking->id) }}" class="btn-icon view-btn" title="View Details">
+                                <a href="{{ route('bookings.show', $booking->id) }}" class="action-btn view-btn" title="View">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
-                                <a href="{{ route('bookings.edit', $booking->id) }}" class="btn-icon edit-btn" title="Edit Booking">
-                                    <i class="fa-solid fa-pen-to-square"></i>
+                                <a href="{{ route('bookings.edit', $booking->id) }}" class="action-btn edit-btn" title="Edit">
+                                    <i class="fa-solid fa-pen"></i>
                                 </a>
                                 <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn-icon delete-btn" title="Delete Booking" onclick="return confirm('Are you sure?')">
+                                    <button type="submit" class="action-btn delete-btn" style="background:none; border:none; padding:0; cursor:pointer;" onclick="return confirm('Are you sure?')">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>

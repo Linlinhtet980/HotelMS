@@ -31,8 +31,8 @@
                 </div>
 
                 <div class="form-actions">
-                    <button type="reset" class="btn btn-outline">Reset Form</button>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="reset" class="btn-secondary">Reset Form</button>
+                    <button type="submit" class="btn-primary">
                         <i class="fa-solid fa-save"></i> Save Amenity
                     </button>
                 </div>

@@ -10,9 +10,9 @@
 @section('content')
 <div class="form-container">
     <div class="actions-header" style="justify-content: flex-start; margin-bottom: 1.5rem;">
-        <a href="{{ route('bookings.index') }}" class="btn btn-outline" style="padding: 0.5rem 1rem;">
-            <i class="fa-solid fa-arrow-left"></i> Back to List
-        </a>
+    <a href="{{ route('bookings.index') }}" class="btn-secondary">
+        <i class="fa-solid fa-arrow-left"></i> Back to List
+    </a>
     </div>
 
     <div class="card">
@@ -129,10 +129,10 @@
                 </div>
 
                 <div class="form-actions">
-                    <button type="reset" class="btn btn-outline" style="border-color: var(--text-secondary); color: var(--text-secondary);">
+                    <button type="reset" class="btn-secondary">
                         <i class="fa-solid fa-rotate-left"></i> Reset
                     </button>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn-primary">
                         <i class="fa-solid fa-check"></i> Confirm Booking
                     </button>
                 </div>

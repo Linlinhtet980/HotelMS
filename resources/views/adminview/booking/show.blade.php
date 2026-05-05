@@ -10,9 +10,9 @@
 @section('content')
 <div class="invoice-container">
     <div class="actions-header" style="justify-content: flex-start; margin-bottom: 1.5rem;">
-        <a href="{{ route('bookings.index') }}" class="btn btn-outline" style="padding: 0.5rem 1rem;">
-            <i class="fa-solid fa-arrow-left"></i> Back to List
-        </a>
+    <a href="{{ route('bookings.index') }}" class="btn-secondary">
+        <i class="fa-solid fa-arrow-left"></i> Back to List
+    </a>
     </div>
 
     <div class="invoice-card">
@@ -123,7 +123,7 @@
                 <i class="fa-solid fa-circle-info"></i> This is a computer-generated summary for internal records.
             </div>
             <div class="action-btns">
-                <a href="{{ route('bookings.edit', $booking->id) }}" class="btn btn-outline" style="padding: 0.5rem 1.5rem;">
+                <a href="{{ route('bookings.edit', $booking->id) }}" class="btn-primary" style="padding: 0.5rem 1.5rem;">
                     <i class="fa-solid fa-pen-to-square"></i> Edit Booking
                 </a>
             </div>

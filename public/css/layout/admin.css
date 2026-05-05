@@ -129,7 +129,7 @@ body {
 
 /* TOPBAR */
 .topbar {
-    height: 85px;
+    height: 115px;
     background-color: var(--bg-dark);
     border-bottom: 1px solid var(--border-color);
     display: flex;
@@ -274,7 +274,7 @@ body {
     background-color: var(--accent-gold);
     color: #FFFFFF;
     border: none;
-    padding: 0.6rem 1.25rem;
+    padding: 0.6rem 1.2rem;
     border-radius: 6px;
     font-size: 0.85rem;
     font-weight: 600;
@@ -282,20 +282,28 @@ body {
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    transition: var(--transition);
+    justify-content: center;
+    gap: 0.6rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);
 }
 
 .btn-primary:hover {
     background-color: var(--accent-gold-light);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.25);
+    color: #FFFFFF;
+}
+
+.btn-primary:active {
+    transform: translateY(0);
 }
 
 .btn-secondary {
-    background-color: #222222;
-    color: #FFFFFF;
-    border: 1px solid #333;
-    padding: 0.6rem 1.25rem;
+    background-color: #111111;
+    color: #DDDDDD;
+    border: 1px solid #222;
+    padding: 0.6rem 1.2rem;
     border-radius: 6px;
     font-size: 0.85rem;
     font-weight: 600;
@@ -303,13 +311,98 @@ body {
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    transition: var(--transition);
+    justify-content: center;
+    gap: 0.6rem;
+    transition: all 0.2s ease;
 }
 
 .btn-secondary:hover {
-    background-color: #333;
+    background-color: #1a1111;
     border-color: #444;
+    color: #FFFFFF;
+    transform: translateY(-1px);
 }
 
-.text-right { text-align: right; }
+.btn-danger {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #EF4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-danger:hover {
+    background-color: #EF4444;
+    color: #FFFFFF;
+}
+
+.text-right { 
+    text-align: right !important; 
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+/* ACTION LINKS (Table Icons) */
+.action-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.view-btn {
+    background-color: #111111;
+    color: #888;
+    border-color: #222;
+}
+
+.view-btn:hover {
+    background-color: #1a1a1a;
+    color: #FFFFFF;
+    border-color: #444;
+    transform: translateY(-2px);
+}
+
+.edit-btn {
+    background-color: rgba(124, 58, 237, 0.1);
+    color: var(--accent-gold);
+}
+
+.edit-btn:hover {
+    background-color: var(--accent-gold);
+    color: #FFFFFF;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
+}
+
+.delete-btn {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #EF4444;
+}
+
+.delete-btn:hover {
+    background-color: #EF4444;
+    color: #FFFFFF;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+

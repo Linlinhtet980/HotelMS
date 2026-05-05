@@ -13,7 +13,7 @@
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" class="search-input" placeholder="Search room number or type...">
     </div>
-    <a href="{{ route('rooms.create') ?? '#' }}" class="btn btn-primary">
+    <a href="{{ route('rooms.create') ?? '#' }}" class="btn-primary">
         <i class="fa-solid fa-plus"></i> Add New Room
     </a>
 </div>
@@ -33,11 +33,11 @@
                         <th>Bed Type</th>
                         <th>Price (per night)</th>
                         <th>Wi-Fi Status</th>
-                        <th>Actions</th>
+                        <th class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-@php /** @var \Illuminate\Database\Eloquent\Collection|\App\Models\rooms[] $rooms */ @endphp
+@php /** @var \Illuminate\Database\Eloquent\Collection|\App\Models\Room[] $rooms */ @endphp
 
                     @forelse($rooms as $room)
                     <tr>
@@ -66,18 +66,18 @@
                                 <span class="status-badge status-danger"><i class="fa-solid fa-wifi" style="margin-right: 4px; text-decoration: line-through;"></i> Not Available</span>
                             @endif
                         </td>
-                        <td>
+                        <td class="text-center">
                             <div class="action-links">
-                                <a href="{{ route('rooms.show', $room->id) }}" class="btn-icon view-btn" title="View Details">
+                                <a href="{{ route('rooms.show', $room->id) }}" class="action-btn view-btn" title="View">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
-                                <a href="{{ route('rooms.edit', $room->id) }}" class="btn-icon edit-btn" title="Edit Room">
-                                    <i class="fa-solid fa-pen-to-square"></i>
+                                <a href="{{ route('rooms.edit', $room->id) }}" class="action-btn edit-btn" title="Edit">
+                                    <i class="fa-solid fa-pen"></i>
                                 </a>
                                 <form action="{{ route('rooms.destroy', $room->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn-icon delete-btn" title="Delete Room">
+                                    <button type="submit" class="action-btn delete-btn" style="background:none; border:none; padding:0; cursor:pointer;" onclick="return confirm('Are you sure?')">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>

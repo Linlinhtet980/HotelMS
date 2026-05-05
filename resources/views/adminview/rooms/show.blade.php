@@ -10,9 +10,9 @@
 @section('content')
 <div class="detail-container">
     <div class="actions-header" style="justify-content: flex-start; margin-bottom: 2rem;">
-        <a href="{{ route('rooms.index') }}" class="btn btn-outline" style="padding: 0.5rem 1rem;">
-            <i class="fa-solid fa-arrow-left"></i> Back to Rooms List
-        </a>
+    <a href="{{ route('rooms.index') }}" class="btn-secondary">
+        <i class="fa-solid fa-arrow-left"></i> Back to Rooms List
+    </a>
     </div>
 
     <!-- Main Detail Card -->
@@ -85,16 +85,16 @@
             </div>
 
             <!-- Action Buttons Footer -->
-            <div class="detail-actions">
-                <a href="{{ route('rooms.edit', $room->id) }}" class="btn btn-primary" style="flex: 1;">
+            <div class="detail-actions" style="display: flex; gap: 1rem; margin-top: 2rem;">
+                <a href="{{ route('rooms.edit', $room->id) }}" class="btn-primary" style="flex: 1;">
                     <i class="fa-solid fa-pen-to-square"></i> Edit Room Info
                 </a>
                 
                 <form action="{{ route('rooms.destroy', $room->id) }}" method="POST" style="flex: 1;">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-outline" style="width: 100%; border-color: #EF4444; color: #EF4444;" onclick="return confirm('Are you sure you want to delete this room?');">
-                        <i class="fa-solid fa-trash"></i> Delete
+                    <button type="submit" class="btn-danger" style="width: 100%;" onclick="return confirm('Are you sure you want to delete this room?');">
+                        <i class="fa-solid fa-trash"></i> Delete Room
                     </button>
                 </form>
             </div>
