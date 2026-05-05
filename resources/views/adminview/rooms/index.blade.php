@@ -32,7 +32,7 @@
                         <th>Room Number</th>
                         <th>Bed Type</th>
                         <th>Price (per night)</th>
-                        <th>Wi-Fi Status</th>
+                        <th>Amenities</th>
                         <th class="text-center">Actions</th>
                     </tr>
                 </thead>
@@ -60,11 +60,15 @@
                             <span class="room-price">${{ number_format($room->price, 2) }}</span>
                         </td>
                         <td>
-                            @if($room->detail && $room->detail->has_wifi)
-                                <span class="status-badge status-success"><i class="fa-solid fa-wifi" style="margin-right: 4px;"></i> Available</span>
-                            @else
-                                <span class="status-badge status-danger"><i class="fa-solid fa-wifi" style="margin-right: 4px; text-decoration: line-through;"></i> Not Available</span>
-                            @endif
+                            <div class="amenity-badges" style="display: flex; flex-wrap: wrap; gap: 4px;">
+                                @forelse($room->amenities as $amenity)
+                                    <span class="status-badge" style="background-color: rgba(124, 58, 237, 0.1); color: var(--accent-gold); border: 1px solid rgba(124, 58, 237, 0.2); padding: 2px 8px; font-size: 0.75rem;">
+                                        {{ $amenity->name }}
+                                    </span>
+                                @empty
+                                    <span class="text-secondary" style="font-size: 0.8rem;">No amenities</span>
+                                @endforelse
+                            </div>
                         </td>
                         <td class="text-center">
                             <div class="action-links">

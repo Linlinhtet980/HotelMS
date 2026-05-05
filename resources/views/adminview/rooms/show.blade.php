@@ -53,24 +53,7 @@
                     </div>
                 </div>
 
-                <!-- Wi-Fi Status -->
-                <div class="detail-item">
-                    <div class="detail-icon" style="background-color: rgba(59, 130, 246, 0.1); color: #3B82F6;">
-                        <i class="fa-solid fa-wifi"></i>
-                    </div>
-                    <div class="detail-info">
-                        <span class="detail-label">Internet Access</span>
-                        @if($room->detail && $room->detail->has_wifi)
-                            <span class="detail-value value-wifi-yes">
-                                <i class="fa-solid fa-circle-check"></i> High-Speed Wi-Fi Available
-                            </span>
-                        @else
-                            <span class="detail-value value-wifi-no">
-                                <i class="fa-solid fa-circle-xmark"></i> Wi-Fi Not Available
-                            </span>
-                        @endif
-                    </div>
-                </div>
+
 
                 <!-- Example of an extra field just to make it look full and nice -->
                 <div class="detail-item">

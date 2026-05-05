@@ -66,23 +66,7 @@
                         @enderror
                     </div>
 
-                    <!-- Wi-Fi Status -->
-                    <div class="form-group @error('has_wifi') has-error @enderror">
-                        <label class="form-label">Wi-Fi Availability</label>
-                        <div class="radio-group">
-                            <label class="radio-label">
-                                <input type="radio" class="radio-input" name="has_wifi" value="1" {{ old('has_wifi', '1') == '1' ? 'checked' : '' }}>
-                                Yes, Available
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" class="radio-input" name="has_wifi" value="0" {{ old('has_wifi') == '0' ? 'checked' : '' }}>
-                                No Wi-Fi
-                            </label>
-                        </div>
-                        @error('has_wifi')
-                            <span class="error-message">{{ $message }}</span>
-                        @enderror
-                    </div>
+
 
                     <!-- Room Image Upload -->
                     <div class="form-group full-width @error('image') has-error @enderror">
@@ -94,6 +78,19 @@
                         @error('image')
                             <span class="error-message">{{ $message }}</span>
                         @enderror
+                    </div>
+
+                    <!-- Amenities Selection -->
+                    <div class="form-group full-width">
+                        <label class="form-label">Select Amenities</label>
+                        <div class="amenities-selection-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; background: #0B0B0B; padding: 20px; border-radius: 8px; border: 1px solid #222;">
+                            @foreach($amenities as $amenity)
+                                <label class="amenity-checkbox-label" style="display: flex; align-items: center; gap: 10px; cursor: pointer; color: #BBB; font-size: 0.9rem; transition: 0.2s;">
+                                    <input type="checkbox" name="amenities[]" value="{{ $amenity->id }}" style="accent-color: var(--accent-gold); width: 16px; height: 16px;">
+                                    {{ $amenity->name }}
+                                </label>
+                            @endforeach
+                        </div>
                     </div>
 
                 </div>

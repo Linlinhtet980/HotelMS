@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Room, RoomDetail};
+use App\Models\{Room, RoomDetail, Amenity};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,7 +13,7 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $rooms = Room::with('detail') -> get();
+        $rooms = Room::with(['detail','amenities']) -> get();
         return view('adminview.rooms.index', compact('rooms'));
     }
 
@@ -22,7 +22,8 @@ class RoomController extends Controller
      */
     public function create()
     {
-        return view('adminview.rooms.create');
+        $amenities = Amenity::all();
+        return view('adminview.rooms.create', compact('amenities'));
     }
 
     /**
@@ -34,7 +35,6 @@ class RoomController extends Controller
             'Room_Number'   => 'required',
             'price'         => 'required|numeric',
             'bed_type'      => 'required',
-            'has_wifi'      => 'required',
             'image'         => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
@@ -58,8 +58,11 @@ class RoomController extends Controller
         
         $room->detail()->create([
             'bed_type' => $request->bed_type,
-            'has_wifi' => $request->has_wifi
         ]);
+
+        if ($request->has('amenities')) {
+            $room->amenities()->sync($request->amenities);
+        }
 
         return redirect()->route('rooms.index')->with('success', 'Room created successfully.');
     }
@@ -78,8 +81,9 @@ class RoomController extends Controller
      */
     public function edit(Room $room)
     {
-        $room->load('detail');
-        return view('adminview.rooms.edit', compact('room'));
+        $room->load(['detail', 'amenities']);
+        $amenities = Amenity::all();
+        return view('adminview.rooms.edit', compact('room', 'amenities'));
     }
 
     /**
@@ -91,7 +95,6 @@ class RoomController extends Controller
             'Room_Number' => 'required',
             'price'       => 'required|numeric',
             'bed_type'    => 'required',
-            'has_wifi'    => 'required',
             'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
@@ -112,9 +115,14 @@ class RoomController extends Controller
             [   'room_id'   => $room->id ],
             [
                 'bed_type'  => $request->bed_type,
-                'has_wifi'  => $request->has_wifi
             ]
         );
+
+        if ($request->has('amenities')) {
+            $room->amenities()->sync($request->amenities);
+        } else {
+            $room->amenities()->detach();
+        }
 
         return redirect()->route('rooms.index')->with('success', 'Room updated successfully.');
     }
