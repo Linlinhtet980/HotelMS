@@ -90,11 +90,17 @@
 
                     <!-- Amenities Selection -->
                     <div class="form-group full-width">
-                        <label class="form-label">Update Amenities</label>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <label class="form-label" style="margin-bottom: 0;">Update Amenities</label>
+                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: var(--accent-gold); font-size: 0.85rem; font-weight: 600;">
+                                <input type="checkbox" id="select-all-amenities" style="accent-color: var(--accent-gold); width: 14px; height: 14px;">
+                                Select All
+                            </label>
+                        </div>
                         <div class="amenities-selection-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; background: #0B0B0B; padding: 20px; border-radius: 8px; border: 1px solid #222;">
                             @foreach($amenities as $amenity)
                                 <label class="amenity-checkbox-label" style="display: flex; align-items: center; gap: 10px; cursor: pointer; color: #BBB; font-size: 0.9rem; transition: 0.2s;">
-                                    <input type="checkbox" name="amenities[]" value="{{ $amenity->id }}" 
+                                    <input type="checkbox" name="amenities[]" value="{{ $amenity->id }}" class="amenity-checkbox"
                                         {{ $room->amenities->contains($amenity->id) ? 'checked' : '' }}
                                         style="accent-color: var(--accent-gold); width: 16px; height: 16px;">
                                     {{ $amenity->name }}
@@ -102,6 +108,13 @@
                             @endforeach
                         </div>
                     </div>
+
+                    <script>
+                        document.getElementById('select-all-amenities').addEventListener('change', function() {
+                            const checkboxes = document.querySelectorAll('.amenity-checkbox');
+                            checkboxes.forEach(cb => cb.checked = this.checked);
+                        });
+                    </script>
 
                 </div>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\{Room, RoomDetail, Amenity};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class RoomController extends Controller
 {
@@ -45,24 +46,29 @@ class RoomController extends Controller
         //     $date['image'] = $filename;
         // }
 
-        $imagePath = null;                                                                      
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('rooms', 'public');
-        }
+        DB::transaction(function() use ($request) {
+            $imagePath = null;                                                                      
+            if ($request->hasFile('image')) {
+                $imagePath = $request->file('image')->store('rooms', 'public');
+            }
 
-        $room = Room::create([
-            'Room_Number' => $request->Room_Number,
-            'price'       => $request->price,
-            'image'       => $imagePath
-        ]);
-        
-        $room->detail()->create([
-            'bed_type' => $request->bed_type,
-        ]);
+            $room = Room::create([
+                'Room_Number' => $request->Room_Number,
+                'price'       => $request->price,
+                'image'       => $imagePath
+            ]);
+            
+            // one to one detail
+            $room->detail()->create([
+                'bed_type' => $request->bed_type,
+            ]);
 
-        if ($request->has('amenities')) {
-            $room->amenities()->sync($request->amenities);
-        }
+
+            // many to many amenities
+            if ($request->has('amenities')) {
+                $room->amenities()->attach($request->amenities);  // sync
+            }
+        });
 
         return redirect()->route('rooms.index')->with('success', 'Room created successfully.');
     }
