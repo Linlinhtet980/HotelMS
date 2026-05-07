@@ -104,7 +104,8 @@ class RoomController extends Controller
             'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        $data = $request->only('Room_Number', 'price');
+        DB::transaction(function() use ($request,$room){
+            $data = $request->only('Room_Number', 'price');
         
         if ($request->hasFile('image')) {
             // Delete old image if it exists
@@ -129,6 +130,7 @@ class RoomController extends Controller
         } else {
             $room->amenities()->detach();
         }
+        });
 
         return redirect()->route('rooms.index')->with('success', 'Room updated successfully.');
     }
