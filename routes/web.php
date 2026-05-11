@@ -7,9 +7,14 @@ use App\Http\Controllers\AmenityController;
 use App\Http\Controllers\DashboardController;
 use App\Models\Amenity;
 
+use App\Http\Controllers\auth\authController;
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/login', [authController::class, 'login'])->name('login');
+Route::get('/register', [authController::class, 'register'])->name('register');
 
 Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
 
